@@ -707,7 +707,7 @@ export default function App() {
 
             {/* Search (ডেস্কটপ) */}
             <div className="hidden md:block flex-1 max-w-[360px]">
-              {renderSearch('গ্যাজেট সার্চ করুন...')}
+              {renderSearch('সার্চ করুন...')}
             </div>
 
             {/* Action pills */}
