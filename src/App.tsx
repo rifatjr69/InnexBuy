@@ -24,6 +24,7 @@ import { WishlistPage } from './components/WishlistPage';
 import { AdminDashboard } from './components/AdminDashboard';
 import { AccountPage } from './components/AccountPage';
 import { Footer } from './components/Footer';
+import { WhatsAppSupport } from './components/WhatsAppSupport';
 
 // ====== এখানে আপনার স্টোরের নাম, থিম কালার ও হটলাইন বদলাতে পারবেন ======
 const STORE_NAME = 'innexbuy';
@@ -489,7 +490,7 @@ export default function App() {
     setSearchFilter('');
   };
 
-  // Admin page
+  // Admin page (WhatsApp বাটন এখানে নেই)
   if (isAdminOpen) {
     return (
       <AdminDashboard
@@ -514,44 +515,50 @@ export default function App() {
   // Wishlist page
   if (isWishlistOpen) {
     return (
-      <WishlistPage
-        onClose={() => setIsWishlistOpen(false)}
-        products={products}
-        wishlistIds={wishlist}
-        onToggleWishlist={handleToggleWishlist}
-        onAddToCart={(p, q) => handleAddToCart(p, q)}
-        onSelectProduct={(p) => {
-          setSelectedProduct(p);
-          setIsWishlistOpen(false);
-        }}
-      />
+      <>
+        <WishlistPage
+          onClose={() => setIsWishlistOpen(false)}
+          products={products}
+          wishlistIds={wishlist}
+          onToggleWishlist={handleToggleWishlist}
+          onAddToCart={(p, q) => handleAddToCart(p, q)}
+          onSelectProduct={(p) => {
+            setSelectedProduct(p);
+            setIsWishlistOpen(false);
+          }}
+        />
+        <WhatsAppSupport />
+      </>
     );
   }
 
   // Account page
   if (isAccountOpen) {
     return (
-      <AccountPage
-        user={user}
-        onClose={() => {
-          setIsAccountOpen(false);
-          try { window.history.replaceState({}, '', '/'); } catch { /* ignore */ }
-        }}
-        onLogout={async () => {
-          try { await supabase.auth.signOut(); } catch { /* ignore */ }
-          setUser(null);
-          setIsAccountOpen(false);
-          try { window.history.replaceState({}, '', '/'); } catch { /* ignore */ }
-        }}
-        products={products}
-        wishlistIds={wishlist}
-        onToggleWishlist={handleToggleWishlist}
-        onAddToCart={(p, q) => handleAddToCart(p, q)}
-        onSelectProduct={(p) => {
-          setSelectedProduct(p);
-          setIsAccountOpen(false);
-        }}
-      />
+      <>
+        <AccountPage
+          user={user}
+          onClose={() => {
+            setIsAccountOpen(false);
+            try { window.history.replaceState({}, '', '/'); } catch { /* ignore */ }
+          }}
+          onLogout={async () => {
+            try { await supabase.auth.signOut(); } catch { /* ignore */ }
+            setUser(null);
+            setIsAccountOpen(false);
+            try { window.history.replaceState({}, '', '/'); } catch { /* ignore */ }
+          }}
+          products={products}
+          wishlistIds={wishlist}
+          onToggleWishlist={handleToggleWishlist}
+          onAddToCart={(p, q) => handleAddToCart(p, q)}
+          onSelectProduct={(p) => {
+            setSelectedProduct(p);
+            setIsAccountOpen(false);
+          }}
+        />
+        <WhatsAppSupport />
+      </>
     );
   }
 
@@ -1283,6 +1290,9 @@ export default function App() {
       </main>
 
       <Footer />
+
+      {/* WhatsApp Support (বাম পাশে নিচে ফ্লোটিং বাটন) */}
+      <WhatsAppSupport />
     </div>
   );
 }
