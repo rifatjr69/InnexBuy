@@ -27,7 +27,7 @@ import { Footer } from './components/Footer';
 
 // ====== এখানে আপনার স্টোরের নাম, থিম কালার ও হটলাইন বদলাতে পারবেন ======
 const STORE_NAME = 'innexbuy';
-const HOTLINE = '0 1982-71166800';
+const HOTLINE = '0 1982-711668';
 const BRAND = '#EC2A6B'; // মেইন পিংক কালার
 const PILL_COLORS = ['#1D4ED8', '#E6127F', '#8B3FD9', '#0EA5A4', '#166B4D', '#F97316'];
 const NO_SCROLLBAR = '[scrollbar-width:none] [&::-webkit-scrollbar]:hidden';
